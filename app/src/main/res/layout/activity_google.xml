@@ -35,28 +35,32 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:textSize="20dp" />
+                android:textSize="25sp"
+                android:fontFamily="@font/baloo"/>
 
             <TextView
                 android:id="@+id/txtEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:textSize="18dp" />
+                android:textSize="20sp"
+                android:fontFamily="@font/baloo"/>
         </LinearLayout>
     </LinearLayout>
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/btn_sign_in"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp" />
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/baloo"/>
 
     <Button
         android:id="@+id/btn_sign_out"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:text="logout"
-        android:visibility="gone" />
+        android:visibility="gone"
+        android:fontFamily="@font/baloo"/>
 </LinearLayout>

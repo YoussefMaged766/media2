@@ -13,27 +13,33 @@
         android:layout_gravity="center_horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+
+         />
 
     <ImageView
         android:id="@+id/imgProfilePic1"
-        android:layout_width="80dp"
-        android:layout_height="90dp"
+        android:layout_width="179dp"
+        android:layout_height="151dp"
         app:layout_constraintBottom_toTopOf="@+id/login_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.237" />
 
     <TextView
         android:id="@+id/txtname_fac"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/login_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgProfilePic1" />
+        app:layout_constraintTop_toBottomOf="@+id/imgProfilePic1"
+        tools:text="ahmed"
+        android:fontFamily="@font/baloo"/>
 
     <Button
         android:id="@+id/btn_logoutfb"
@@ -43,19 +49,22 @@
         app:layout_constraintBottom_toTopOf="@+id/btngo_google"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_button"
-        android:visibility="gone"/>
+        app:layout_constraintTop_toBottomOf="@+id/txtname_fac"
+        android:visibility="gone"
+        android:fontFamily="@font/baloo"/>
 
     <Button
         android:id="@+id/btngo_google"
-        android:text="go to GOOGLE"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/baloo"
+        android:text="ٍSign in with Google"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_button" />
+        app:layout_constraintTop_toBottomOf="@+id/login_button"
+        app:layout_constraintVertical_bias="0.207" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
