@@ -19,37 +19,45 @@ import org.json.JSONException
 import java.util.*
 
 
-
 private const val TAG = "MainActivity"
+
 class MainActivity : AppCompatActivity() {
 
-    private  var callbackManager: CallbackManager?=null
+    private var callbackManager: CallbackManager? = null
     private lateinit var loginButton: LoginButton
     private lateinit var btn_logout: Button
     private lateinit var txtname: TextView
     private lateinit var imgProfilePic: ImageView
+    private lateinit var btn_google: Button
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        imgProfilePic = findViewById(R.id.imgProfilePic1)
-        txtname = findViewById(R.id.txtname_fac)
-        val btn_google = findViewById<Button>(R.id.btngo_google)
-        btn_logout = findViewById(R.id.btn_logoutfb)
-
-        //init
-        loginButton = findViewById(R.id.login_button)
+        calling()
         callbackManager = CallbackManager.Factory.create()
-        loginButton.setPermissions(listOf("email","public_profile"))
+        loginButton.setPermissions(listOf("email", "public_profile"))
+
+        buttons_listners()
         val accessToken = AccessToken.getCurrentAccessToken()
         val isLoggedIn = accessToken != null && !accessToken.isExpired
-        btn_google.setOnClickListener{
-            var i = Intent(this , google_activity::class.java)
-            startActivity(i)
-        }
 
-        //login callback
+
+
+
+
+    }
+
+    private fun calling() {
+        imgProfilePic = findViewById(R.id.imgProfilePic1)
+        txtname = findViewById(R.id.txtname_fac)
+        btn_google = findViewById(R.id.btngo_google)
+        btn_logout = findViewById(R.id.btn_logoutfb)
+        loginButton = findViewById(R.id.login_button)
+
+    }
+
+    private fun buttons_listners() {
         loginButton.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
 
             override fun onSuccess(result: LoginResult) {
@@ -63,7 +71,6 @@ class MainActivity : AppCompatActivity() {
                 updateUI(true)
 
 
-
                 //Graph API to access the data of user's facebook account
                 val request = GraphRequest.newMeRequest(
                     result.accessToken
@@ -73,26 +80,24 @@ class MainActivity : AppCompatActivity() {
                     //For safety measure enclose the request with try and catch
                     try {
 
-                        val profilePicture_url = "https://graph.facebook.com/" + userId + "/picture?type=large"
-                        Log.e(TAG , "picture"+profilePicture_url)
+                        val profilePicture_url =
+                            "https://graph.facebook.com/" + userId + "/picture?type=large"
+                        Log.e(TAG, "picture" + profilePicture_url)
                         Glide.with(getApplicationContext()).load(profilePicture_url)
                             .into(imgProfilePic)
                         Log.d(TAG, "onSuccess: fbObject $fbObject")
 
                         val Name = fbObject?.getString("name")
-                        txtname.text= Name
-                        loginButton.visibility = View.GONE
-//                        val gender = fbObject?.getString("gender")
                         val email = fbObject?.getString("email")
+                        txtname.text = Name
+                        loginButton.visibility = View.GONE
+
 
 //                        Log.d(TAG, "onSuccess: firstName $firstName")
 //                        Log.d(TAG, "onSuccess: lastName $lastName")
 //                        Log.d(TAG, "onSuccess: gender $gender")
                         Log.d(TAG, "onSuccess: email $email")
 
-
-
-                        Log.d(TAG, "onSuccess: picture $profilePicture_url")
                     } //If no data has been retrieve throw some error
                     catch (e: JSONException) {
 
@@ -109,7 +114,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onCancel() {
                 Log.d(TAG, "onCancel: called")
-                Toast.makeText(applicationContext,"login cancel" , Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "login cancel", Toast.LENGTH_SHORT).show()
 
 
             }
@@ -120,19 +125,22 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        btn_logout.setOnClickListener{
+        btn_logout.setOnClickListener {
             FacebookSdk.sdkInitialize(this.getApplicationContext())
             LoginManager.getInstance().logOut()
             updateUI(false)
 
         }
-
+        btn_google.setOnClickListener {
+            var i = Intent(this, google_activity::class.java)
+            startActivity(i)
+        }
     }
 
     private fun updateUI(isSignedIn: Boolean) {
         if (isSignedIn) {
             loginButton!!.visibility = View.GONE
-            btn_logout !!.visibility = View.VISIBLE
+            btn_logout!!.visibility = View.VISIBLE
             imgProfilePic!!.visibility = View.VISIBLE
             txtname!!.visibility = View.VISIBLE
         } else {
