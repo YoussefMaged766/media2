@@ -41,7 +41,7 @@
         tools:text="ahmed"
         android:fontFamily="@font/baloo"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_logoutfb"
         android:text="log out"
         android:layout_width="wrap_content"
@@ -51,9 +51,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtname_fac"
         android:visibility="gone"
-        android:fontFamily="@font/baloo"/>
+        android:backgroundTint="#4267B2"
+        android:textColor="@color/white"
+        android:fontFamily="@font/baloo"
+        app:cornerRadius="10dp"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btngo_google"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -64,7 +67,15 @@
         app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_button"
-        app:layout_constraintVertical_bias="0.207" />
+        app:layout_constraintVertical_bias="0.207"
+        android:backgroundTint="@color/white"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:textColor="@color/black"
+        android:drawableLeft="@drawable/google_icon"
+        app:iconSize="15dp"
+        app:iconPadding="10dp"
+        app:cornerRadius="10dp"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
